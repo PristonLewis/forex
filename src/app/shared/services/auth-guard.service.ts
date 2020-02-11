@@ -8,7 +8,6 @@ export class AuthGuardService {
 
   constructor(public router: Router) { }
   canActivate(): boolean {
-    console.log("here", localStorage.getItem('userid'));
     if (localStorage.getItem('userid') === '' || localStorage.getItem('userid') === null) {
       this.router.navigate(['/login']);
       return false;
