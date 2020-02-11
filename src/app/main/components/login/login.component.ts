@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
 
-      uName: ['', Validators.required],
+      mobile: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
 
 
@@ -31,7 +31,30 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
 
-  public onSubmit(loginForm): void { }
+  public onSubmit(loginForm): void {
+
+    this.submitted = true;
+    console.log(this.loginForm.value);
+    console.log(this.loginForm);
+    this.httpService.postRequest('users/login', this.loginForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.statusCode === 200) {
+          this.router.navigate(['/fundtransfer']);
+        } else {
+          this.router.navigate(['']);
+        }
+        localStorage.setItem('userid', data.userId);
+        localStorage.setItem('mobile', this.loginForm.value.mobile);
+        this.errFlag = false;
+
+      }, (exception) => {
+        this.errFlag = true;
+        console.log('exception', exception);
+      });
+
+
+  }
 
 
 }
