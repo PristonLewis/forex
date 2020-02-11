@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-fund-transfer',
@@ -16,7 +17,7 @@ export class FundTransferComponent implements OnInit {
   public errorList: Array<string>;
   public confirmationPayload: any;
   public total: number;
-  constructor(private http: HttpService) { this.errorList = []; }
+  constructor(private http: HttpService, private router: Router) { this.errorList = []; }
 
   ngOnInit() {
     // Gets the account details of the logged in customer
@@ -42,6 +43,7 @@ export class FundTransferComponent implements OnInit {
     this.errorFlag = false;
     this.http.postRequest('transaction/confirmTransaction', this.confirmationPayload).subscribe((data) => {
       $('#successModal').modal('hide');
+      this.router.navigate(['/transhistory']);
     }, (exception) => {
       this.errorFlag = true;
     });
@@ -50,11 +52,14 @@ export class FundTransferComponent implements OnInit {
     // Does validations
     public checkValidations(confirmEventPayload): boolean {
       let flag = true;
-      if (confirmEventPayload.toAccountNumber === undefined || confirmEventPayload.toAccountNumber.trim() === '') {
+      this.errorList = [];
+      console.log('confirmEventPayload', confirmEventPayload);
+      if (confirmEventPayload.toAccountNumber === undefined ||
+         confirmEventPayload.toAccountNumber.toString().trim() === '0') {
         this.errorList.push('Please enter to account number');
         flag = false;
       }
-      if ((Number(confirmEventPayload.toAmount) + Number(confirmEventPayload.charges))  > confirmEventPayload.fromAmount) {
+      if ((Number(confirmEventPayload.fromAmount) + Number(confirmEventPayload.charges))  > Number(this.myAccountDetails.balance)) {
         this.errorList.push('Insufficient funds');
         flag = false;
       }
