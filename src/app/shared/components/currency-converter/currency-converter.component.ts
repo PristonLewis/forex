@@ -25,6 +25,7 @@ export class CurrencyConverterComponent implements OnInit {
     this.selectedCurrency = 'USD';
     this.amount = 0;
     this.convertedAmount = 0;
+    this.charges = 0;
    }
 
   ngOnInit() {
@@ -36,19 +37,22 @@ export class CurrencyConverterComponent implements OnInit {
     console.log(this.accountDetails);
     this.http.getRequest('currency/' + this.accountDetails.currency +
     '/' + this.selectedCurrency + '/' + this.amount).subscribe((data: any) => {
-      this.convertedAmount = data.convertAmount;
-      // this.charges = data.charges;
+      this.convertedAmount = data.convertAmount.toPrecision(4);
+      this.charges = data.charges;
+      const eventPayload: {
+        toAmount: number,
+        toCurrency: string,
+        charges: number,
+        fromAmount: number
+      } = {
+        toAmount: this.convertedAmount,
+        toCurrency: this.selectedCurrency,
+        charges: this.charges,
+        fromAmount: this.amount
+      };
+      this.convertedAmountEvent.emit(eventPayload);
     });
-    const eventPayload: {
-      toAmount: number,
-      toCurrency: string,
-      charges: number
-    } = {
-      toAmount: this.convertedAmount,
-      toCurrency: this.selectedCurrency,
-      charges: this.charges
-    };
-    this.convertedAmountEvent.emit(eventPayload);
+
   }
 
   public amountChanged(): void {

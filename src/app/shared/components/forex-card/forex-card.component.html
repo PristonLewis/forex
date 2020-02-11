@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-6">
                     <p *ngIf="!controls"> {{accountDetails.accountNumber}}</p>
-                    <p *ngIf="controls"> <input type="text" [(ngModel)]="accountNumber"/></p>
+                    <p *ngIf="controls"> <input class="form-control" placeholder="Please enter the account number" type="text" [(ngModel)]="accountNumber"/></p>
                 </div>                
             </div>
 
@@ -29,18 +29,10 @@
             </div>
             <div class="row" *ngIf="controls">
                 <div class="col-sm-6">
-                    Charges
-                </div>
-                <div class="col-sm-6">
-                     INR 10
-                </div>                  
-            </div> 
-            <div class="row" *ngIf="controls">
-                <div class="col-sm-6">
                     Description
                 </div>
                 <div class="col-sm-6">
-                    <p > <input type="text" [(ngModel)]="description"/></p>
+                    <p > <input type="text" class="form-control" placeholder="Please enter the description" [(ngModel)]="description"/></p>
                 </div>                
             </div>              
             <div class="row justify-content-end" *ngIf="controls">

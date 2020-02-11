@@ -15,12 +15,13 @@ export class ForexCardComponent implements OnInit {
   };
   @Output() confirmEvent = new EventEmitter();
 
-  public accountNumber: string;
+  public accountNumber: number;
   public description: string;
   public amountDetails: {
     toCurrency: string,
     toAmount: number,
-    charges: number
+    charges: number,
+    fromAmount: number
   };
   constructor() { }
 
@@ -33,10 +34,12 @@ export class ForexCardComponent implements OnInit {
 
   public confirm() {
     const confirmEventPayload = {
-      toAccountNumber: this.accountNumber,
+      toAccountNumber: Number(this.accountNumber),
       toCurrency: this.amountDetails.toCurrency,
       toAmount: this.amountDetails.toAmount,
-      description: this.description
+      description: this.description,
+      charges: this.amountDetails.charges,
+      fromAmount: this.amountDetails.fromAmount
     };
     this.confirmEvent.emit(confirmEventPayload);
   }
