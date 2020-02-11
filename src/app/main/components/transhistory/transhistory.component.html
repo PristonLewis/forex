@@ -13,20 +13,16 @@
                 <th>Currency</th>
                 <th>TransactionType</th>
                 <th>Description</th>
-
-
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let history of myHistory">
                 <td>{{history.accountNumber}}</td>
-                <td>{{history.transactionDate}}</td>
+                <td>{{history.transactionDate | date: 'M/d/yy,  h:mm a'}}</td>
                 <td>{{history.amount}}</td>
                 <td>{{history.currency}}</td>
                 <td>{{history.transactionType}}</td>
                 <td>{{history.description}}</td>
-
-
             </tr>
         </tbody>
     </table>
