@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './forex-card.component.html',
   styleUrls: ['./forex-card.component.sass']
 })
-export class ForexCardComponent implements OnInit {
+export class ForexCardComponent {
 
   @Input() controls: boolean;
   @Input() accountDetails: {
@@ -25,14 +25,13 @@ export class ForexCardComponent implements OnInit {
   };
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  // Eventemitter method from the currency converter component
   public getAmount(event): void {
     this.amountDetails = event;
   }
 
-  public confirm() {
+  // Sends the information in this component to the parent component
+  public confirm(): void {
     const confirmEventPayload = {
       toAccountNumber: Number(this.accountNumber),
       toCurrency: this.amountDetails.toCurrency,
@@ -43,5 +42,7 @@ export class ForexCardComponent implements OnInit {
     };
     this.confirmEvent.emit(confirmEventPayload);
   }
+
+
 
 }

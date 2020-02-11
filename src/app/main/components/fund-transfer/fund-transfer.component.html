@@ -17,6 +17,9 @@
             </ul>
             <br>  
         </div>
+    </div>
+    <div *ngIf="errorList.length">        
+        <p class="error" *ngFor="let error of errorList">{{error}}</p>
     </div>  
     <br>     
   </div>
@@ -58,7 +61,7 @@
         </div>
         <div class="modal-footer btnspace">
           <div *ngIf="errorFlag">
-            <p class="error">Something went wrong, Transaction unsucessful</p><br><br>
+            <p class="error">Something went wrong, Transaction unsuccessful</p><br><br>
           </div>  
           <div>
             <button type="button" class="btn btn-primary " (click)="transactionConfirmed()">Transfer</button>

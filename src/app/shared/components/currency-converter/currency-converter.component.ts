@@ -6,7 +6,7 @@ import { HttpService } from '../../services/http.service';
   templateUrl: './currency-converter.component.html',
   styleUrls: ['./currency-converter.component.sass']
 })
-export class CurrencyConverterComponent implements OnInit {
+export class CurrencyConverterComponent {
 
   @Input() baseCurrency: string;
   @Input() balance: number;
@@ -28,10 +28,8 @@ export class CurrencyConverterComponent implements OnInit {
     this.charges = 0;
    }
 
-  ngOnInit() {
-  }
-
   // gets the selected currency and convert the amount to that currency
+  // and send the detail to the parent component
   public onChange(currency: string, isInput): void {
     if (!isInput) { this.selectedCurrency = currency;  }
     console.log(this.accountDetails);
@@ -52,9 +50,9 @@ export class CurrencyConverterComponent implements OnInit {
       };
       this.convertedAmountEvent.emit(eventPayload);
     });
-
   }
 
+  // Listen to convertion changes on the input box
   public amountChanged(): void {
     this.onChange(undefined, true);
   }
