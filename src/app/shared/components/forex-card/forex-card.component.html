@@ -6,8 +6,8 @@
                     Account Number
                 </div>
                 <div class="col-sm-6">
-                    <p *ngIf="!controls">: {{accountDetails.accountNumber}}</p>
-                    <p *ngIf="controls">: <input type="text" /></p>
+                    <p *ngIf="!controls"> {{accountDetails.accountNumber}}</p>
+                    <p *ngIf="controls"> <input type="text" [(ngModel)]="accountNumber"/></p>
                 </div>                
             </div>
 
@@ -16,7 +16,7 @@
                     My balance
                 </div>
                 <div class="col-sm-6">
-                    <p>: {{accountDetails.currency}} {{accountDetails.balance}}</p>
+                    <p> {{accountDetails.currency}} {{accountDetails.balance}}</p>
                 </div>                  
             </div>            
             <div class="row" *ngIf="controls">
@@ -24,7 +24,7 @@
                     Transfer amount
                 </div>
                 <div class="col-sm-6">
-                    <app-currency-converter></app-currency-converter>
+                    <app-currency-converter [accountDetails]="accountDetails" (convertedAmountEvent)="getAmount($event)"></app-currency-converter>
                 </div>                  
             </div>
             <div class="row" *ngIf="controls">
@@ -32,15 +32,24 @@
                     Charges
                 </div>
                 <div class="col-sm-6">
-                    : INR 10
+                     INR 10
                 </div>                  
-            </div>   
+            </div> 
+            <div class="row" *ngIf="controls">
+                <div class="col-sm-6">
+                    Description
+                </div>
+                <div class="col-sm-6">
+                    <p > <input type="text" [(ngModel)]="description"/></p>
+                </div>                
+            </div>              
             <div class="row justify-content-end" *ngIf="controls">
                 <div class="col-sm-3">
                     <hr>
-                        <button class="btn btn-outline-primary">Confirm</button>
+                        <button class="btn btn-outline-primary" (click)="confirm()">Confirm</button>
                 </div>
-            </div>          
+            </div>  
+                    
         </div>
     </div>
 </div>

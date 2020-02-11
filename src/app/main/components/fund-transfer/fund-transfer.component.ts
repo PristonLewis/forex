@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $: any;
 @Component({
   selector: 'app-fund-transfer',
   templateUrl: './fund-transfer.component.html',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FundTransferComponent implements OnInit {
 
-  public mockMyAccountDetails = {
+  public mockMyAccountDetails: {
+    accountNumber: string,
+    balance: string,
+    currency: string
+  } = {
     accountNumber: '2011WXSSSWWWQ',
     balance: '10000',
     currency: 'INR'
@@ -15,6 +19,11 @@ export class FundTransferComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public showConfirmationPopDetails(event): void {
+    console.log('show', event);
+    $('#successModal').modal('show');
   }
 
 }
