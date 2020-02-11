@@ -1,0 +1,43 @@
+<div class="container mainDiv">
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>Funds Transfer</h5>
+            <ul class="list-group">
+              <li class="list-group-item active">My account info</li>
+              <li class="list-group-item"><app-forex-card [accountDetails]="mockMyAccountDetails" [controls]="false"></app-forex-card></li>  
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-group">
+              <li class="list-group-item active">Beneficiary account info</li>
+              <li class="list-group-item"><app-forex-card [accountDetails]="mockMyAccountDetails" [controls]="true" (confirmEvent)="showConfirmationPopDetails($event)"></app-forex-card></li>  
+            </ul>
+            <br>  
+        </div>
+    </div>  
+    <br>     
+  </div>
+
+  <!-- <div  class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{confirmationMessage}}.
+        </div>
+        <div class="modal-footer btnspace">
+
+          <button type="button" class="btn btn-primary " (click)="ok()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>   -->
+
