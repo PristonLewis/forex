@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    Account Number
+                </div>
+                <div class="col-sm-6">
+                    <p *ngIf="!controls">: {{accountDetails.accountNumber}}</p>
+                    <p *ngIf="controls">: <input type="text" /></p>
+                </div>                
+            </div>
+
+            <div class="row" *ngIf="!controls">
+                <div class="col-sm-6">
+                    My balance
+                </div>
+                <div class="col-sm-6">
+                    <p>: {{accountDetails.currency}} {{accountDetails.balance}}</p>
+                </div>                  
+            </div>            
+            <div class="row" *ngIf="controls">
+                <div class="col-sm-6">
+                    Transfer amount
+                </div>
+                <div class="col-sm-6">
+                    <app-currency-converter></app-currency-converter>
+                </div>                  
+            </div>
+            <div class="row" *ngIf="controls">
+                <div class="col-sm-6">
+                    Charges
+                </div>
+                <div class="col-sm-6">
+                    : INR 10
+                </div>                  
+            </div>   
+            <div class="row justify-content-end" *ngIf="controls">
+                <div class="col-sm-3">
+                    <hr>
+                        <button class="btn btn-outline-primary">Confirm</button>
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>
+  

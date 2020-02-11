@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FundTransferComponent implements OnInit {
 
+  public mockMyAccountDetails = {
+    accountNumber: '2011WXSSSWWWQ',
+    balance: '10000',
+    currency: 'INR'
+  };
   constructor() { }
 
   ngOnInit() {
