@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
   selector: 'app-transhistory',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TranshistoryComponent implements OnInit {
 
-  constructor() { }
+  public myHistory;
+
+  constructor(private httpService: HttpService) {
+
+  }
+
 
   ngOnInit() {
 
+    this.httpService.getRequest('transaction/viewTransactions/' + localStorage.getItem('userid')).subscribe((data) => {
+      console.log('data', data);
+      this.myHistory = data.transactions;
+    });
+
   }
+
+
+
+
+
 
 }
