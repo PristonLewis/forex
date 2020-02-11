@@ -53,7 +53,6 @@ export class FundTransferComponent implements OnInit {
     public checkValidations(confirmEventPayload): boolean {
       let flag = true;
       this.errorList = [];
-      console.log('confirmEventPayload', confirmEventPayload);
       if (confirmEventPayload.toAccountNumber === undefined ||
          confirmEventPayload.toAccountNumber.toString().trim() === '0') {
         this.errorList.push('Please enter to account number');
@@ -63,7 +62,8 @@ export class FundTransferComponent implements OnInit {
         this.errorList.push('Insufficient funds');
         flag = false;
       }
-      if (confirmEventPayload.toAmount < 1 ) {
+      console.log('confirm event', confirmEventPayload);
+      if (confirmEventPayload.fromAmount < 1 ) {
         this.errorList.push('Transaction amount cannot be zero');
         flag = false;
       }
