@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
 
 
+
     });
 
 
@@ -34,11 +35,16 @@ export class LoginComponent implements OnInit {
   public onSubmit(loginForm): void {
 
     this.submitted = true;
+
+    this.loginForm.setValue({
+      mobile: this.loginForm.value.mobile.toString(),
+      password: this.loginForm.value.password
+    })
     console.log(this.loginForm.value);
-    console.log(this.loginForm);
+
     this.httpService.postRequest('users/login', this.loginForm.value).subscribe(
       (data) => {
-        console.log(data);
+
         if (data.statusCode === 200) {
           localStorage.setItem('userid', data.userId);
           localStorage.setItem('mobile', this.loginForm.value.mobile);
@@ -49,7 +55,6 @@ export class LoginComponent implements OnInit {
         this.errFlag = true;
         localStorage.setItem('userid', '');
         localStorage.setItem('mobile', '');
-        console.log('exception', exception);
       });
 
 
