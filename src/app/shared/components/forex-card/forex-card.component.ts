@@ -23,7 +23,15 @@ export class ForexCardComponent {
     charges: number,
     fromAmount: number
   };
-  constructor() { }
+  constructor() {
+    this.amountDetails = {
+      toCurrency: '',
+      toAmount: 0,
+      charges: 0,
+      fromAmount: 0
+    };
+    this.accountNumber = 0;
+   }
 
   // Eventemitter method from the currency converter component
   public getAmount(event): void {
@@ -42,7 +50,5 @@ export class ForexCardComponent {
     };
     this.confirmEvent.emit(confirmEventPayload);
   }
-
-
 
 }

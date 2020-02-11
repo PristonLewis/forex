@@ -13,14 +13,18 @@
         <div class="col-sm-12">
             <ul class="list-group">
               <li class="list-group-item active">Beneficiary account info</li>
-              <li class="list-group-item"><app-forex-card [accountDetails]="myAccountDetails" [controls]="true" (confirmEvent)="showConfirmationPopDetails($event)"></app-forex-card></li>  
+              <li class="list-group-item"><app-forex-card [accountDetails]="myAccountDetails" [controls]="true" (confirmEvent)="showConfirmationPopDetails($event)"></app-forex-card></li> 
+    
+                <ul *ngIf="errorList.length">   
+
+                    <li class="error" *ngFor="let error of errorList">{{error}}</li>
+                </ul>  
+              
             </ul>
             <br>  
         </div>
     </div>
-    <div *ngIf="errorList.length">        
-        <p class="error" *ngFor="let error of errorList">{{error}}</p>
-    </div>  
+
     <br>     
   </div>
 
@@ -57,7 +61,10 @@
           <div class="row">
             <div class="col-sm-6">Description</div>
             <div class="col-sm-6">: {{confirmationPayload.description}}</div>
-          </div>                                                  
+          </div>   
+          <div class="row">
+              <p class="p-5">Please wait...</p>
+          </div>                                                
         </div>
         <div class="modal-footer btnspace">
           <div *ngIf="errorFlag">
