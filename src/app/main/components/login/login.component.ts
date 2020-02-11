@@ -40,16 +40,15 @@ export class LoginComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.statusCode === 200) {
+          localStorage.setItem('userid', data.userId);
+          localStorage.setItem('mobile', this.loginForm.value.mobile);
           this.router.navigate(['/fundtransfer']);
-        } else {
-          this.router.navigate(['']);
         }
-        localStorage.setItem('userid', data.userId);
-        localStorage.setItem('mobile', this.loginForm.value.mobile);
         this.errFlag = false;
-
       }, (exception) => {
         this.errFlag = true;
+        localStorage.setItem('userid', '');
+        localStorage.setItem('mobile', '');
         console.log('exception', exception);
       });
 

@@ -1,7 +1,7 @@
 
 <div class="row">
-    <div class="col-sm-6">
-        <select (change)="onChange($event.target.value, false)">
+    <div class="col-sm-5">
+        <select (change)="onChange($event.target.value, false)" class="form-control">
             <option>USD</option>
             <option>NOK</option>
             <option>CNY</option>
@@ -12,17 +12,17 @@
     </div>
 </div>
 <div class="row">    
-    <div class="col-sm-6">
-        <input type="number" [(ngModel)]="amount"  (change)="amountChanged()"> <br>
-    </div>    
+    <div class="col-sm-5">
+        <input type="number" [(ngModel)]="amount"  class="form-control" placeholder="Please enter the amount" (change)="amountChanged()"> <br>
+    </div> 
+    <div class="col-sm-3">
+        <p><b>{{selectedCurrency}}</b> {{convertedAmount}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Charges : {{baseCurrency}}</b> {{charges}}</p>
+    </div>        
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <span>{{selectedCurrency}} {{convertedAmount}}</span>
-        <!-- <span> Charges : {{charges}}</span> -->
-    </div>
-</div>
 
                
 
